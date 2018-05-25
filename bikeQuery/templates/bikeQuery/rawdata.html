@@ -1,0 +1,42 @@
+{% extends "bikeQuery/base.html" %}
+{% load static %}
+
+{% block content%}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<script src="{% static 'js/index.js' %}"></script>
+
+
+
+{% csrf_token %}
+<div id="divRawData">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Label</th>
+        <th scope="col">Bikes</th>
+        <th scope="col">Free racks</th>
+        <th scope="col">Bike racks</th>
+        <th scope="col">Coordinates</th>
+        <th scope="col">Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in stationData %}
+          <tr>
+            {# <td>{{i.id}}</td> #}
+            <td>{{ forloop.counter }}</td>
+            <td>{{i.label}}</td>
+            <td>{{i.bikes}}</td>
+            <td>{{i.free_racks}}</td>
+            <td>{{i.bike_racks}}</td>
+            <td>{{i.coordinates}}</td>
+            <td>{{i.updated}}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

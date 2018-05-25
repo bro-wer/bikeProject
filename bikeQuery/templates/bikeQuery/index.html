@@ -1,0 +1,34 @@
+{% extends "bikeQuery/base.html" %}
+{% load static %}
+
+{% block content%}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<script src="{% static 'js/index.js' %}"></script>
+
+
+
+{% csrf_token %}
+<body onload="myMap()">
+
+  <table width="100%">
+    <tr>
+      <td width="30%">
+        <input type="text" id="myInput" onkeyup="filterStationsList()" placeholder="Search for stations..">
+        <ul id="myUL">
+          {% for i in stationData %}
+          <li id="stationNo_{{i.id}}" onclick="toggleStationMarker(this.id, {{i.coordinates}})"><a href="#">{{i.label}}</a></li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td width="2%"></td>
+      <td>
+        <div id="map" style="min-width: 100%;height: 800px;background:yellow"></div>
+      </td>
+    </tr>
+  </table>
+
+
+
+
+  {% endblock %}
